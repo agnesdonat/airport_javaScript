@@ -26,14 +26,24 @@ describe('Airport', function() {
     spyOn(Math, 'random').and.returnValue(0.81);
     expect(function() {airport.take_off(plane)}).toThrowError('Weather is stormy. Plane cannot take off.');
   });
-  it('cannot land a plane when airport is full', function() {
+  it('cannot land a plane when airport is full, with default capacity', function() {
     var airport = new Airport();
     var plane = new Plane();
     spyOn(Math, 'random').and.returnValue(0.79);
     for (var i = 0; i < 3; i++) {
       airport.land(plane);
-    }    
+    }
     expect(function() { airport.land(plane) }).toThrowError('Airport is full.');
+  });
+  it('can have its capacity overidden', function() {
+    var airport = new Airport();
+    var plane = new Plane();
+    spyOn(Math, 'random').and.returnValue(0.79);
+    airport.changeCapacity(5)
+    for (var i = 0; i < 3; i++) {
+      airport.land(plane);
+    }
+    expect(function() { airport.land(plane) }).not.toThrowError('Airport is full.');
   });
 
 

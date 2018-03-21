@@ -1,5 +1,10 @@
 function Airport() {
   this._planes = [];
+  this._capacity = 3;
+}
+
+Airport.prototype.changeCapacity = function (newCapacity) {
+  this._capacity = newCapacity;
 }
 
 Airport.prototype.planes = function() {
@@ -11,7 +16,7 @@ Airport.prototype._isStormy = function() {
 }
 
 Airport.prototype._isFull = function() {
-  return this._planes.length >= 3;
+  return this._planes.length >= this._capacity;
 }
 
 Airport.prototype.land = function(plane) {

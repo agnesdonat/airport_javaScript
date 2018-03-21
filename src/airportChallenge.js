@@ -11,6 +11,7 @@ Airport.prototype._isStormy = function() {
 }
 
 Airport.prototype.land = function(plane) {
+  if (this._isStormy()) { throw Error('Weather is stormy. Plane cannot land.')};
   this._planes.push(plane);
 }
 

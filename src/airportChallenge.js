@@ -10,8 +10,13 @@ Airport.prototype._isStormy = function() {
   return (Math.random() > 0.8);
 }
 
+Airport.prototype._isFull = function() {
+  return this._planes.length >= 3;
+}
+
 Airport.prototype.land = function(plane) {
   if (this._isStormy()) { throw Error('Weather is stormy. Plane cannot land.')};
+  if (this._isFull()) { throw Error('Airport is full.')};
   this._planes.push(plane);
 }
 
